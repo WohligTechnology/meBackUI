@@ -13,9 +13,9 @@ phonecatControllers.controller('home', function ($scope, TemplateService, Naviga
     TemplateService.content = "views/dashboard.html";
     TemplateService.list = 2;
     $scope.navigation = NavigationService.getnav();
-    //  NavigationService.countUser(function(data, status) {
-    //    $scope.user = data;
-    //  });
+    NavigationService.countUser(function (data, status) {
+        $scope.user = data;
+    });
 });
 phonecatControllers.controller('login', function ($scope, TemplateService, NavigationService, $routeParams, $location) {
     $scope.template = TemplateService;

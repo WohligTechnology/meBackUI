@@ -13,16 +13,14 @@ firstapp.config(
         //        uiSelectConfig.resetSearchInput = true;
         //        uiSelectConfig.appendToBody = true;
 
-        $routeProvider.
-        when('/login', {
-            templateUrl: 'views/template.html',
-            controller: 'login'
-        }).
-        when('/home', {
-            templateUrl: 'views/template.html',
-            controller: 'home'
-        }).
-        when('/user', {
+        $routeProvider
+            .when('/login', {
+                templateUrl: 'views/template.html',
+                controller: 'login'
+            }).when('/home', {
+                templateUrl: 'views/template.html',
+                controller: 'home'
+            }).when('/user', {
                 templateUrl: 'views/template.html',
                 controller: 'UserCtrl'
             }).when('/createuser', {
@@ -85,6 +83,28 @@ firstapp.config(
 firstapp.filter('uploadpath', function () {
     return function (input) {
         return adminurl + "user/resize?file=" + input;
+    };
+});
+
+firstapp.directive('onlyDigits', function () {
+    return {
+        require: 'ngModel',
+        restrict: 'A',
+        link: function (scope, element, attr, ctrl) {
+            function inputValue(val) {
+                if (val) {
+                    var digits = val.replace(/[^0-9\-.\\]/g, '');
+
+                    if (digits !== val) {
+                        ctrl.$setViewValue(digits);
+                        ctrl.$render();
+                    }
+                    return parseInt(digits, 10);
+                }
+                return undefined;
+            }
+            ctrl.$parsers.push(inputValue);
+        }
     };
 });
 

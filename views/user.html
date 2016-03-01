@@ -23,13 +23,13 @@
                             <table class="table table-bordered ">
                                 <thead>
                                     <tr class="bg-dark">
-                                        <th class="text-center">First Name</th>
+                                        <th class="text-center">Name</th>
                                         <th colspan="2" class="text-center">Operations</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="value in user.data">
-                                        <td class="text-center">{{value.firstname}}</td>
+                                        <td class="text-center">{{value.name}}</td>
                                         <td class="text-center"><a ng-click="deletefun(value._id)" class="btn btn-primary all-btn"><i class="fa fa-times"></i></a>
                                         </td>
                                         <td class="text-center">

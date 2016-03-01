@@ -69,9 +69,9 @@ var navigationservice = angular.module('navigationservice', [])
                 }
             }).success(callback);
         },
-        //    countUser: function(callback) {
-        //      $http.get(adminurl + "user/countusers").success(callback);
-        //    },
+        countUser: function (callback) {
+            $http.get(adminurl + "user/countusers").success(callback);
+        },
         setUser: function (data) {
             $.jStorage.set("user", data);
         },
@@ -125,7 +125,7 @@ var navigationservice = angular.module('navigationservice', [])
         },
         findJob: function (data, job, callback) {
             $http({
-                url: adminurl + 'job/find',
+                url: adminurl + 'job/findDrop',
                 method: 'POST',
                 data: {
                     search: data,
@@ -244,16 +244,6 @@ var navigationservice = angular.module('navigationservice', [])
                 method: 'POST',
                 data: {
                     'name': data.name
-                }
-            }).success(callback);
-        },
-        findJobs: function (data, jobs, callback) {
-            $http({
-                url: adminurl + 'jobs/find',
-                method: 'POST',
-                data: {
-                    search: data,
-                    jobs: jobs
                 }
             }).success(callback);
         },
