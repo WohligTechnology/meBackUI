@@ -82,7 +82,7 @@ firstapp.config(
     });
 firstapp.filter('uploadpath', function () {
     return function (input) {
-        return adminurl + "user/resize?file=" + input;
+        return adminurl + "uploadfile/resize?file=" + input;
     };
 });
 
