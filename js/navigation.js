@@ -153,7 +153,7 @@ var navigationservice = angular.module('navigationservice', [])
         },
         saveClient: function (data, callback) {
             $http({
-                url: adminurl + 'user/save',
+                url: adminurl + 'user/saveBack',
                 method: 'POST',
                 data: data
             }).success(callback);
