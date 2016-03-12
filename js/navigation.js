@@ -1,4 +1,5 @@
-var adminurl = "http://192.168.0.122/";
+var adminurl = "http://130.211.164.166/";
+// var adminurl = "http://192.168.0.126:1337/";
 var adminlogin = {
     "username": "admin@admin.com",
     "password": "admin123"
@@ -12,9 +13,14 @@ var navigationservice = angular.module('navigationservice', [])
             link: "#/home",
             subnav: []
         }, {
-            name: 'User',
+            name: 'Flexi Lancer',
             active: '',
             link: '#/user',
+            subnav: []
+        }, {
+            name: 'Flexi Client',
+            active: '',
+            link: '#/client',
             subnav: []
         }, {
             name: 'Job',
@@ -94,7 +100,8 @@ var navigationservice = angular.module('navigationservice', [])
                 data: {
                     'search': user.search,
                     'pagesize': parseInt(user.limit),
-                    'pagenumber': parseInt(user.page)
+                    'pagenumber': parseInt(user.page),
+                    'accesslevel': user.accesslevel
                 }
             }).success(callback);
         },
@@ -108,6 +115,43 @@ var navigationservice = angular.module('navigationservice', [])
             }).success(callback);
         },
         saveUser: function (data, callback) {
+            $http({
+                url: adminurl + 'user/saveBack',
+                method: 'POST',
+                data: data
+            }).success(callback);
+        },
+        getOneClient: function (id, callback) {
+            $http({
+                url: adminurl + 'user/findone',
+                method: 'POST',
+                data: {
+                    '_id': id
+                }
+            }).success(callback);
+        },
+        findLimitedClient: function (user, callback) {
+            $http({
+                url: adminurl + 'user/findlimited',
+                method: 'POST',
+                data: {
+                    'search': user.search,
+                    'pagesize': parseInt(user.limit),
+                    'pagenumber': parseInt(user.page),
+                    'accesslevel': user.accesslevel
+                }
+            }).success(callback);
+        },
+        deleteClient: function (callback) {
+            $http({
+                url: adminurl + 'user/delete',
+                method: 'POST',
+                data: {
+                    '_id': $.jStorage.get('deleteuser')
+                }
+            }).success(callback);
+        },
+        saveClient: function (data, callback) {
             $http({
                 url: adminurl + 'user/save',
                 method: 'POST',
@@ -167,39 +211,6 @@ var navigationservice = angular.module('navigationservice', [])
                 url: adminurl + 'job/save',
                 method: 'POST',
                 data: data
-            }).success(callback);
-        },
-        saveUser: function (data, callback) {
-            $http({
-                url: adminurl + 'user/save',
-                method: 'POST',
-                data: {
-                    'name': data.name
-                }
-            }).success(callback);
-        },
-        findUser: function (data, user, callback) {
-            $http({
-                url: adminurl + 'user/find',
-                method: 'POST',
-                data: {
-                    search: data,
-                    user: user
-                }
-            }).success(callback);
-        },
-        getUser: function (callback) {
-            $http({
-                url: adminurl + 'user/find',
-                method: 'POST',
-                data: {}
-            }).success(callback);
-        },
-        getUser: function (callback) {
-            $http({
-                url: adminurl + 'user/find',
-                method: 'POST',
-                data: {}
             }).success(callback);
         },
         getOneCategory: function (id, callback) {

@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" ng-app="firstapp">
 
 <head ng-controller="headerctrl">
-    <title ng-bind="'Aura Art - '+template.title"></title>
-    <!--    <link rel="shortcut icon" href="img/favicon.png" />-->
+    <title ng-bind="'Flexi Me - '+template.title"></title>
+        <link rel="shortcut icon" href="img/<flexi-icon class="png">
     <link rel="stylesheet" type="text.css" href="bower_components/angular-ui-select/dist/select.css" />
     <link rel="stylesheet" type="text/css" href="lib/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="lib/css/font-awesome.min.css" />

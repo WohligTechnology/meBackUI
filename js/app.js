@@ -29,6 +29,15 @@ firstapp.config(
             }).when('/edituser/:id', {
                 templateUrl: 'views/template.html',
                 controller: 'editUserCtrl'
+            }).when('/client', {
+                templateUrl: 'views/template.html',
+                controller: 'ClientCtrl'
+            }).when('/createclient', {
+                templateUrl: 'views/template.html',
+                controller: 'createClientCtrl'
+            }).when('/editclient/:id', {
+                templateUrl: 'views/template.html',
+                controller: 'editClientCtrl'
             }).when('/job', {
                 templateUrl: 'views/template.html',
                 controller: 'JobCtrl'
@@ -82,7 +91,10 @@ firstapp.config(
     });
 firstapp.filter('uploadpath', function () {
     return function (input) {
-        return adminurl + "uploadfile/resize?file=" + input;
+        if (input.indexOf("/") == -1)
+            return adminurl + "uploadfile/resize?file=" + input;
+        else
+            return input;
     };
 });
 
